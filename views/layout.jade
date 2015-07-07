@@ -1,0 +1,31 @@
+doctype
+html(lang="en-US", ng-app="myApp")
+	head
+		meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+		link(type="text/css", rel="stylesheet", href="vendor/materialize/dist/css/materialize.css",  media="screen,projection")
+		script(src="vendor/angular/angular.min.js")
+		script(src="vendor/jquery/dist/jquery.min.js")
+		title= t("app.titles.main")
+		block head
+	body
+		script(type="text/javascript", src="vendor/materialize/dist/js/materialize.min.js")
+		header
+			script(type='text/javascript').
+				$(document).ready(function(){$(".button-collapse").sideNav();})
+			nav
+				div(class="nav-wrapper blue-grey darken-4")
+					a(href="/", class="brand-logo")= t("app.titles.main")
+					a(href="/", data-activates="mobile-menu", class="button-collapse")
+						i(class="mdi-navigation-menu")
+					ul(class="right hide-on-med-and-down")
+						li: a(href="/login")= t("app.titles.login")
+						li: a(href="/registeruser")= t("app.titles.registeruser")
+					ul(class="side-nav", id="mobile-menu")
+						li: a(href="/login")= t("app.titles.login")
+						li: a(href="/registeruser")= t("app.titles.registeruser")
+			block header
+		.container(ng-controller="AppCtrl")
+			.main-content
+					block content
+			.sidebar
+					block sidebar

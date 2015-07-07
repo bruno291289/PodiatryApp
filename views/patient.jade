@@ -1,0 +1,115 @@
+extends layout-loggedin.jade
+block head
+	script(src="js/controllers/patient.js")
+	script(src="vendor/angular-validation-match/dist/angular-validation-match.js")
+	link(type="text/css", rel="stylesheet", href="css/custom-forms.css")
+	script(type='text/javascript').
+		function openDialog(){
+			var dialog = document.getElementById('dialog');
+			dialog.showModal();
+		}
+
+		function closeDialog(){
+			var dialog = document.getElementById('dialog');
+			dialog.close();
+		}
+block div-header
+	button(class="btn-floating btn-large waves-effect waves-light left floating-button-add", onclick="openDialog()")
+		i(class="material-icons") add
+block content
+	dialog(id="dialog", class="card dialog-maintenance")
+		form(class="card-content", novalidate, name="form")
+			.row
+				div(class="col s12")
+					ul(class="tabs")
+						li(class="tab col s3"): a(href="#description")= t("app.patient.tabs.description")
+						li(class="tab col s3"): a(href="#address")= t("app.patient.tabs.address")
+						li(class="tab col s3"): a(href="#phones")= t("app.patient.tabs.phones")
+			div(id="description")
+				.row
+					div(class="input-field col s12")
+						input(id="name", type="text", class="validate", required, ng-model="patient.name", name="name")
+						label(for="name")= t("app.patient.labels.name")
+						div(ng-show="form.$submitted || form.name.$touched", class="deep-orange-text accent-4 error-text")
+							span(ng-show="form.name.$error.required")= t("app.patient.validations.nameRequired")
+				.row
+					div(class="input-field col s12")
+						input(id="email", type="email", class="validate", required, ng-model="patient.email", name="email")
+						label(for="email")= t("app.patient.labels.email")
+						div(ng-show="form.$submitted || form.email.$touched", class="deep-orange-text accent-4 error-text")
+							span(ng-show="form.email.$error.required")= t("app.patient.validations.emailRequired")
+							span(ng-show="form.email.$error.email")= t("app.patient.validations.emailRightFormat")
+				.row
+					div(class="input-field col s12")
+						textarea(id="description", class="materialize-textarea validate", ng-model="patient.description", name="description")
+						label(for="description")= t("app.patient.labels.description")
+			div(id="address")
+				.row
+					div(class="input-field col s8")
+						input(id="street", type="text", class="validate", ng-model="patient.address.street", name="street")
+						label(for="street")= t("app.patient.labels.street")
+					div(class="input-field col s4")
+						input(id="number", type="number", class="validate", ng-model="patient.address.number", name="number")
+						label(for="number")= t("app.patient.labels.number")
+				.row
+					div(class="input-field col s8")
+						input(id="neighborhood", type="text", class="validate", ng-model="patient.address.neighborhood", name="neighborhood")
+						label(for="neighborhood")= t("app.patient.labels.neighborhood")
+					div(class="input-field col s4")
+						input(id="zipcode", type="text", class="validate", ng-model="patient.address.zipcode", name="zipcode")
+						label(for="zipcode")= t("app.patient.labels.zipcode")
+				.row
+					div(class="input-field col s12")
+						input(id="complement", type="text", class="validate", ng-model="patient.address.complement", name="complement")
+						label(for="complement")= t("app.patient.labels.complement")
+				.row
+					div(class="input-field col s8")
+						input(id="city", type="text", class="validate", ng-model="patient.address.city", name="city")
+						label(for="city")= t("app.patient.labels.city")
+					div(class="input-field col s4")
+						input(id="country", type="text", class="validate", ng-model="patient.address.country", name="country")
+						label(for="country")= t("app.patient.labels.country")
+			div(id="phones")
+				.row
+					div(class="input-field col s5")
+						input(id="phonenumber", type="text", class="validate", required, ng-model="phone.number", name="phonenumber")
+						label(for="phonenumber")= t("app.patient.labels.phonenumber")
+						div(ng-show="form.phonenumber.$touched", class="deep-orange-text accent-4 error-text")
+							span(ng-show="form.phonenumber.$error.required")= t("app.patient.validations.phoneRequired")
+					div(class="input-field col s6")
+						input(id="phonedescription", type="text", class="validate", ng-model="phone.description", name="phonedescription")
+						label(for="phonedescription")= t("app.patient.labels.phonedescription")
+					div(class="input-field col s1")
+						button(class="btn-floating btn-medium waves-effect waves-light right", ng-click="addPhone()", ng-disabled="form.phonenumber.$error.required")
+							i(class="material-icons") add
+				.row
+					div(class="col s12")
+						table
+							col(class="col s4")
+							col(class="col s8")
+							thead
+								tr
+									td= t("app.patient.labels.phonenumber")
+									td= t("app.patient.labels.phonedescription")
+							tbody
+								tr(ng-repeat="ph in patient.phones")
+									td {{ph.number}}
+									td {{ph.description}}
+			.card-action
+				a(class="waves-effect waves-teal btn-flat right", onclick="closeDialog()")= t("app.buttons.crud.cancel")
+				a(class="waves-effect waves-teal btn-flat right", onclick="closeDialog()", ng-click="save()")= t("app.buttons.crud.save")
+	.row
+		div(class="input-field col s6 right")
+			input(id="query", type="text", class="validate", ng-model="query", name="query")
+			label(for="query") Pesquisar
+	.row
+		div(class="col s12")
+			table
+				thead
+					tr
+						td= t("app.patient.labels.name")
+						td= t("app.patient.labels.email")
+				tbody
+					tr(ng-repeat="p in patients | filter: query")
+						td {{p.name}}
+						td {{p.email}}

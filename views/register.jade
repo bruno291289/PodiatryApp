@@ -1,0 +1,37 @@
+extends layout.jade
+block head
+	script(src="js/controllers/register.js")
+	script(src="vendor/angular-validation-match/dist/angular-validation-match.js")
+	link(type="text/css", rel="stylesheet", href="css/custom-forms.css")
+block content
+	.card-panel
+		form(autocomplete="off", class="container", name="form", novalidate)
+			h3= t("app.titles.registeruser")
+			.row
+				div(class="input-field col s12")
+					input(id="name", type="text", class="validate", required, ng-model="user.name", name="username")
+					label(for="name")= t("app.registeruser.labels.name")
+					div(ng-show="form.$submitted || form.username.$touched", class="deep-orange-text accent-4 error-text")
+						span(ng-show="form.username.$error.required")= t("app.registeruser.validations.nameRequired")
+			.row
+				div(class="input-field col s12")
+					input(id="email", type="email", class="validate", required, ng-model="user.email", name="email")
+					label(for="email")= t("app.registeruser.labels.email")
+					div(ng-show="form.$submitted || form.email.$touched", class="deep-orange-text accent-4 error-text")
+						span(ng-show="form.email.$error.required")= t("app.registeruser.validations.emailRequired")
+						span(ng-show="form.email.$error.email")= t("app.registeruser.validations.emailRightFormat")
+			.row
+				div(class="input-field col s12")
+					input(id="password", type="password", class="validate", required, ng-model="user.password", name="password")
+					label(for="password")= t("app.registeruser.labels.password")
+					div(ng-show="form.$submitted || form.password.$touched", class="deep-orange-text accent-4  error-text")
+						span(ng-show="form.password.$error.required")= t("app.registeruser.validations.passwordRequired")
+			.row
+				div(class="input-field col s12")
+					input(id="confirm_password", type="password", class="validate", required, ng-model="user.passwordConfirm", name="passwordConfirmField", match="user.password")
+					label(for="confirm_password")= t("app.registeruser.labels.confirmpassword")
+					div(ng-show="form.$submitted || form.password.$touched", class="deep-orange-text accent-4  error-text")
+						span(ng-show="form.passwordConfirmField.$error.required && !form.passwordConfirmField.$error.match")=  t("app.registeruser.validations.passwordConfirmationRequired")
+						span(ng-show="form.passwordConfirmField.$error.match")=  t("app.registeruser.validations.passwordConfirmationDoesntMatch")
+			.row
+				button(class="btn waves-effect waves-light col s12", type="submit", ng-click="registerUser()", ng-disabled="form.$invalid", ng-model="button_submit")= t("app.buttons.submit")

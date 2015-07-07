@@ -1,0 +1,41 @@
+{
+    "app":{
+        "titles": {
+            "main": "Podologia",
+            "patient": "Pacientes",
+            "login": "Login",
+            "registeruser": "Registrar-se"
+        },
+        "buttons": {
+            "submit": "Enviar",
+            "exit": "Sair"
+        },
+        "login": {
+            "labels":{
+                "email": "Email",
+                "password": "Senha",
+                "confirmpassword": "Confirmar Senha"
+            },
+            "buttons": {
+                "sigin": "Entrar",
+                "register": "Registrar-se"
+            }
+        },
+        "registeruser":{
+            "labels":{
+                "name": "Nome",
+                "email": "Email",
+                "password": "Senha",
+                "confirmpassword": "Confirmar Senha"
+            },
+            "validations": {
+                "nameRequired": "Informe o seu nome",
+                "emailRequired": "Informe o seu email",
+                "passwordRequired": "Informe a sua senha",
+                "passwordConfirmationRequired": "Confirme a sua senha",
+                "passwordConfirmationDoesntMatch": "Digite novamente a sua senha para confirmação",
+                "emailRightFormat": "Informe o email completo no formato email@dominio.com.br"
+            }
+        }
+    }
+}

@@ -1,0 +1,4 @@
+.error-text {font-size: 0.9rem; display: block; float: right;}
+.field-message-error {margin:0 0 9px 0 !important;}
+.floating-button-add {margin-top: 30px;}
+.dialog-maintenance {border: 0; margin-left: auto; margin-right: auto; width: 80%; height: 80%; overflow:scroll;}

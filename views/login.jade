@@ -1,0 +1,22 @@
+extends layout.jade
+block head
+	script(src="js/controllers/login.js")
+block content
+	div(ng-controller="AppCtrl", class="card-panel")
+		form(autocomplete="off", class="container", method="post", action="/login")
+			h2= t("app.titles.login")
+			- if(message)
+				div(class="input-field col s12")
+					span(ng-show="form.username.$error.required") #{message}
+			div(class="row")
+				div(class="input-field col s12")
+					input(id="email", type="email", class="validate", required, ng-model="user.email", name="email")
+					label(for="email")= t("app.login.labels.email")
+			div(class="row")
+				div(class="input-field col s12")
+					input(id="password", type="password", class="validate", required, ng-model="user.password", name="password")
+					label(for="password")= t("app.login.labels.password")
+			div(class="row")
+				button(class="waves-effect waves-light btn col s12", type="submit")= t("app.login.buttons.sigin")
+			div(class="row")
+				a(class="waves-effect waves-light btn col s12", href="/registeruser")= t("app.login.buttons.register")

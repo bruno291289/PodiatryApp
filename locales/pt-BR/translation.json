@@ -1,0 +1,73 @@
+{
+    "app":{
+        "titles": {
+            "main": "",
+            "patient": "Pacientes",
+            "login": "Login",
+            "registeruser": "Registrar-se"
+        },
+        "buttons": {
+            "submit": "Enviar",
+            "exit": "Sair",
+            "crud": {
+                "save": "Salvar",
+                "cancel": "Cancelar"
+            }
+        },
+        "login": {
+            "labels":{
+                "email": "Email",
+                "password": "Senha"
+            },
+            "buttons": {
+                "sigin": "Entrar",
+                "register": "Registrar-se"
+            }
+        },
+        "registeruser":{
+            "labels":{
+                "name": "Nome",
+                "email": "Email",
+                "password": "Senha",
+                "confirmpassword": "Confirmar Senha"
+            },
+            "validations": {
+                "nameRequired": "Informe o seu nome",
+                "emailRequired": "Informe o seu email",
+                "passwordRequired": "Informe a sua senha",
+                "passwordConfirmationRequired": "Confirme a sua senha",
+                "passwordConfirmationDoesntMatch": "Digite novamente a sua senha para confirmação",
+                "emailRightFormat": "Informe o email completo no formato email@dominio.com.br"
+            }
+        },
+        "patient":{
+            "titles": {
+                "main": "Pacientes"
+            },
+            "labels":{
+                "name": "Nome",
+                "email": "Email",
+                "description": "Observações",
+                "street": "Rua",
+                "number": "Número",
+                "neighborhood": "Bairro",
+                "complement": "Complemento",
+                "zipcode": "CEP",
+                "city": "Cidade",
+                "country": "País",
+                "phonenumber": "Número",
+                "phonedescription": "Descrição"
+            },
+            "tabs": {
+                "description": "Descrição",
+                "address": "Endereço",
+                "phones": "Telefones"
+            },
+            "validations": {
+                "nameRequired": "Informe o seu nome",
+                "emailRequired": "Informe o seu email",
+                "emailRightFormat": "Informe o email completo no formato email@dominio.com.br"
+            }
+        }
+    }
+}
