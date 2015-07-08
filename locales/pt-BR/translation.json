@@ -6,6 +6,11 @@
             "login": "Login",
             "registeruser": "Registrar-se"
         },
+        "labels": {
+            "crud": {
+                "actions": "Ações"
+            }
+        },
         "buttons": {
             "submit": "Enviar",
             "exit": "Sair",

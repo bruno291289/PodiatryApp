@@ -14,6 +14,12 @@ block head
 			dialog.close();
 		}
 block div-header
+	div(class="brand-logo center")
+		span= t("app.patient.titles.main")
+		span: i(class="material-icons prefix") search
+		div(class="input-field")
+			i(class="material-icons prefix") search
+			input(id="query", type="text", class="validate", ng-model="query", name="query")
 	button(class="btn-floating btn-large waves-effect waves-light left floating-button-add", onclick="openDialog()")
 		i(class="material-icons") add
 block content
@@ -21,7 +27,7 @@ block content
 		form(class="card-content", novalidate, name="form")
 			.row
 				div(class="col s12")
-					ul(class="tabs")
+					ul(class="tabs orange-text")
 						li(class="tab col s3"): a(href="#description")= t("app.patient.tabs.description")
 						li(class="tab col s3"): a(href="#address")= t("app.patient.tabs.address")
 						li(class="tab col s3"): a(href="#phones")= t("app.patient.tabs.phones")
@@ -34,10 +40,9 @@ block content
 							span(ng-show="form.name.$error.required")= t("app.patient.validations.nameRequired")
 				.row
 					div(class="input-field col s12")
-						input(id="email", type="email", class="validate", required, ng-model="patient.email", name="email")
+						input(id="email", type="email", class="validate", ng-model="patient.email", name="email")
 						label(for="email")= t("app.patient.labels.email")
 						div(ng-show="form.$submitted || form.email.$touched", class="deep-orange-text accent-4 error-text")
-							span(ng-show="form.email.$error.required")= t("app.patient.validations.emailRequired")
 							span(ng-show="form.email.$error.email")= t("app.patient.validations.emailRightFormat")
 				.row
 					div(class="input-field col s12")
@@ -99,11 +104,20 @@ block content
 				a(class="waves-effect waves-teal btn-flat right", onclick="closeDialog()")= t("app.buttons.crud.cancel")
 				a(class="waves-effect waves-teal btn-flat right", onclick="closeDialog()", ng-click="save()")= t("app.buttons.crud.save")
 	.row
-		div(class="input-field col s6 right")
+		div(class="input-field col s6 right", ng-hide="loading")
+			i(class="material-icons prefix") search
 			input(id="query", type="text", class="validate", ng-model="query", name="query")
-			label(for="query") Pesquisar
 	.row
-		div(class="col s12")
+		div(class="col s12" ng-show="loading")
+			div(class="preloader-wrapper big active", ng-show="loading")
+				div(class="spinner-layer spinner-blue")
+					div(class="circle-clipper left")
+						div(class="circle")
+					div(class="gap-patch")
+						div(class="circle")
+					div(class="circle-clipper right")
+						div(class="circle")
+		div(id="list" ng-hide="loading")
 			table
 				thead
 					tr

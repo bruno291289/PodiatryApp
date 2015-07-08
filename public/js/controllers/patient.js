@@ -3,6 +3,7 @@ myApp.controller('AppCtrl', ['$scope', '$http',
     function($scope, $http) {
 
     	$scope.patients = {};
+        $scope.loading = false;
 
         var clearPatient = function(){
             $scope.patient = {phones:[], address:{city: "Ponta Grossa", country: "Brasil"}};
@@ -17,10 +18,12 @@ myApp.controller('AppCtrl', ['$scope', '$http',
         clearPhone();
 
         var refresh = function() {
+            $scope.loading = true;
             $http.get('/patients')
             .success(
             	function(data){
 					$scope.patients = data;
+                    $scope.loading = false;
             	}
             	);
         };
@@ -28,6 +31,7 @@ myApp.controller('AppCtrl', ['$scope', '$http',
         refresh();
 
         $scope.save = function(){
+            $scope.loading = true;
             $http.post('/patient', $scope.patient)
                 .success(
                     function(){

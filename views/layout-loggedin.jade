@@ -12,7 +12,13 @@ html(lang="en-US", ng-app="myApp")
 		script(type="text/javascript", src="vendor/materialize/dist/js/materialize.min.js")
 		header
 			script(type='text/javascript').
-				$(document).ready(function(){$(".button-collapse").sideNav();})
+				$(document).ready(
+					function(){
+						if($(".button-collapse"))
+							$(".button-collapse").sideNav();
+						if($('.collapsible'))
+							$('.collapsible').collapsible({accordion : false});
+					});
 			nav
 				div(class="nav-wrapper blue-grey darken-4")
 					a(href="/home", class="brand-logo")= t("app.titles.main")
